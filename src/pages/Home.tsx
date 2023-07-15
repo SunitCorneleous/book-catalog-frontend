@@ -1,7 +1,11 @@
+import AllBooks from '../components/Home/AllBooks';
+import FilterBooks from '../components/Home/FilterBooks';
+
 const Home = () => {
   return (
-    <div>
-      <h1 className='text-3xl font-bold'>Home Page</h1>
+    <div className='flex px-12'>
+      <FilterBooks />
+      <AllBooks />
     </div>
   );
 };
