@@ -14,8 +14,13 @@ export default {
       },
       // Set theme colors (Required config!)
       colors: {
-        primary: colors.blue,
+        primary: {
+          100: '#388087',
+        },
         secondary: colors.slate,
+        netural: {
+          100: '#F6F6F2',
+        },
       },
     },
   },

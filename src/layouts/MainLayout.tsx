@@ -4,7 +4,7 @@ import Header from './Header';
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className='bg-netural-100'>
       <Header />
       <Outlet />
       <Footer />
