@@ -16,7 +16,7 @@ export default {
       colors: {
         primary: '#388087',
         borderColor: '#d1e4e6',
-        secondary: colors.slate,
+
         netural: {
           100: '#F6F6F2',
         },
