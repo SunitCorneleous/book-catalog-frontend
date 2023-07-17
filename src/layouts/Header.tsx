@@ -22,8 +22,11 @@ const Header = () => {
         </div>
 
         <nav className='flex text-primary'>
-          {navLinks.map(link => (
-            <p className='text-2xl pl-16 font-semibold cursor-pointer hover:font-extrabold'>
+          {navLinks.map((link, key) => (
+            <p
+              key={key}
+              className='text-2xl pl-16 font-semibold cursor-pointer hover:font-extrabold'
+            >
               {link.name}
             </p>
           ))}
