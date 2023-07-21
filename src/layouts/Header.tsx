@@ -1,6 +1,21 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { loginWithToken } from '../redux/features/auth/authThunk';
+import store from '../redux/store';
 
 const Header = () => {
+  useEffect(() => {
+    // Check for the access token in storage
+    const accessToken = localStorage.getItem('access_token');
+
+    if (accessToken) {
+      // Dispatch the login action using the access token
+      store.dispatch(loginWithToken(accessToken)).catch(error => {
+        // Handle any errors if needed
+      });
+    }
+  }, []);
+
   const navLinks = [
     {
       name: 'All Books',
