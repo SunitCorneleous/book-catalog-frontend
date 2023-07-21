@@ -9,7 +9,7 @@ const AllBooks = ({ data }) => {
 
       {/* all books */}
 
-      <div className='py-8 grid grid-cols-3 gap-5'>
+      <div className='py-8 grid grid-cols-3 gap-9'>
         {data &&
           data.map((item: any, key: Key | null | undefined) => (
             <Book key={key} data={item} />
