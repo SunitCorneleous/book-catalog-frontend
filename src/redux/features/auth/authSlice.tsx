@@ -36,17 +36,14 @@ const authSlice = createSlice({
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         localStorage.setItem('access_token', action.payload.data.accessToken);
-
         state.isLoggedIn = true;
         state.isLoading = false;
         state.isError = false;
         state.isLoggedIn = true;
-
         state.user = action.payload.data.user;
       })
       .addCase(loginAsync.rejected, (state, action) => {
         state.isLoading = false;
-
         state.user = null;
         state.isError = true;
         state.isLoggedIn = false;
@@ -54,7 +51,6 @@ const authSlice = createSlice({
       })
       .addCase(loginWithToken.pending, (state, action) => {
         state.isLoading = true;
-
         state.user = null;
         state.isError = false;
         state.isLoggedIn = false;
@@ -65,7 +61,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isLoggedIn = true;
-        state.user = action.payload.data.data;
+        state.user = action.payload.data;
       })
       .addCase(loginWithToken.rejected, (state, action) => {
         state.isLoading = false;

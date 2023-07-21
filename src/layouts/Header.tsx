@@ -2,17 +2,18 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { loginWithToken } from '../redux/features/auth/authThunk';
 import store from '../redux/store';
+import { useAppSelector } from '../redux/hooks';
+import Button from '../components/UI/Button';
+import ActionButton from '../components/UI/ActionButton';
 
 const Header = () => {
+  const { isLoggedIn } = useAppSelector(state => state.auth);
+
   useEffect(() => {
-    // Check for the access token in storage
     const accessToken = localStorage.getItem('access_token');
 
     if (accessToken) {
-      // Dispatch the login action using the access token
-      store.dispatch(loginWithToken(accessToken)).catch(error => {
-        // Handle any errors if needed
-      });
+      store.dispatch(loginWithToken(accessToken)).catch(error => {});
     }
   }, []);
 
@@ -41,15 +42,21 @@ const Header = () => {
         </div>
 
         <nav className='flex text-primary'>
-          {navLinks.map((link, key) => (
-            <Link
-              to={link.path}
-              key={key}
-              className='text-xl pl-10 font-semibold cursor-pointer hover:font-extrabold'
-            >
-              {link.name}
-            </Link>
-          ))}
+          {isLoggedIn ? (
+            <ActionButton onClickHandler={() => console.log('logout')}>
+              Logout
+            </ActionButton>
+          ) : (
+            navLinks.map((link, key) => (
+              <Link
+                to={link.path}
+                key={key}
+                className='text-xl pl-10 font-semibold cursor-pointer hover:font-extrabold'
+              >
+                {link.name}
+              </Link>
+            ))
+          )}
         </nav>
       </div>
     </div>

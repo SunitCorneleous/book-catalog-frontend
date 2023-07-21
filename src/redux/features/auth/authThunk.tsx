@@ -36,9 +36,9 @@ export const loginWithToken = createAsyncThunk(
     // You may want to perform additional validation on the access token here
     try {
       // Simulate an API call to verify the token and fetch user data
-      const data = await axios.get(LOGIN_WITH_TOKEN_API_URL, {
+      const data = await fetch(LOGIN_WITH_TOKEN_API_URL, {
         headers: {
-          Authorization: accessToken,
+          Authorization: accessToken!,
         },
       });
 
@@ -46,7 +46,7 @@ export const loginWithToken = createAsyncThunk(
         return thunkAPI.rejectWithValue(data); // Pass data to the rejectWithValue method
       }
 
-      return data;
+      return await data.json();
     } catch (error) {
       console.error('Error logging in with token:', error.message);
       throw error;
