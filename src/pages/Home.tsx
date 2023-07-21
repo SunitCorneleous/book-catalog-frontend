@@ -1,55 +1,40 @@
-import AllBooks from '../components/Home/AllBooks';
-import FilterBooks from '../components/Home/FilterBooks';
+import Book from '../components/Books/Book';
 import Spinner from '../components/UI/Spinner';
 import { useGetBooksQuery } from '../redux/api/apiSlice';
-import { setBookSearch } from '../redux/features/bookSearch/bookSearchSlice';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { IBook } from '../types/globalTypes';
 
 const Home = () => {
   const { data, isLoading } = useGetBooksQuery(undefined);
-  const { keyword } = useAppSelector(state => state.bookSearch);
-  const { genre, year } = useAppSelector(state => state.bookFilter);
 
-  console.log(year);
+  let books = [];
 
-  const dispatch = useAppDispatch();
+  if (data?.data) {
+    books = data.data;
+  }
 
-  const handleFilterChange = (event: { target: { value: string } }) => {
-    const { value } = event.target;
-    dispatch(setBookSearch(value));
-  };
+  console.log();
 
-  let bookData = data?.data;
-
-  if (keyword && bookData) {
-    bookData = data?.data.filter((book: IBook) => {
-      const title = book.title.toLowerCase().includes(keyword.toLowerCase());
-      const author = book.author.toLowerCase().includes(keyword.toLowerCase());
-      const genre = book.genre.toLowerCase().includes(keyword.toLowerCase());
-
-      return title || author || genre;
-    });
-  } else if (genre && bookData) {
-    bookData = data?.data.filter((book: IBook) =>
-      book.genre.toLowerCase().includes(genre.toLowerCase())
-    );
-  } else if (year && bookData) {
-    bookData = data?.data.filter((book: IBook) =>
-      book.publicationDate.toLowerCase().includes(year.toLowerCase())
+  if (isLoading) {
+    return (
+      <div className='h-[70vh] flex justify-center items-center'>
+        <Spinner />
+      </div>
     );
   }
 
   return (
-    <div className='flex px-12'>
-      <FilterBooks filterHandler={handleFilterChange} />
-      {!isLoading ? (
-        <AllBooks data={bookData} />
-      ) : (
-        <div className='w-full h-[50vh] flex items-center justify-center'>
-          <Spinner />
-        </div>
-      )}
+    <div className='px-12 '>
+      <h2 className='text-2xl text-primary font-semibold mb-6'>
+        Top 10 recently added books{' '}
+      </h2>
+
+      <div className='grid grid-cols-4 gap-5'>
+        {books.length &&
+          [...books]
+            .reverse()
+            .slice(0, 10)
+            .map((book: IBook, i: number) => <Book data={book} key={i} />)}
+      </div>
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Header = () => {
   const navLinks = [
     {
@@ -18,17 +20,20 @@ const Header = () => {
     <div>
       <div className='flex h-40 md:max-w-full px-12 md:mx-auto items-center justify-between '>
         <div className=''>
-          <h1 className='text-2xl font-bold text-primary'>Logo</h1>
+          <h1 className='text-2xl font-bold text-primary'>
+            <Link to={'/'}>Logo</Link>
+          </h1>
         </div>
 
         <nav className='flex text-primary'>
           {navLinks.map((link, key) => (
-            <p
+            <Link
+              to={link.path}
               key={key}
               className='text-xl pl-10 font-semibold cursor-pointer hover:font-extrabold'
             >
               {link.name}
-            </p>
+            </Link>
           ))}
         </nav>
       </div>

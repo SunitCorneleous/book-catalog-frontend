@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Key } from 'react';
 import Book from '../Books/Book';
+import { IBook } from '../../types/globalTypes';
 
-const AllBooks = ({ data }) => {
+type IPropType = {
+  data: IBook[];
+};
+
+const AllBooks = ({ data }: IPropType) => {
   return (
     <div className='flex-1 p-4border-borderColor border-2 rounded-md w-[60%] p-8 ml-4'>
-      <h1 className='text-xl font-semibold text-primary'>All books</h1>
+      <h1 className='text-xl font-semibold text-primary'>Recent books</h1>
 
       {/* all books */}
 
