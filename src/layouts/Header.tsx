@@ -18,14 +18,14 @@ const Header = () => {
     <div>
       <div className='flex h-40 md:max-w-full px-12 md:mx-auto items-center justify-between '>
         <div className=''>
-          <h1 className='text-4xl font-bold text-primary'>Logo</h1>
+          <h1 className='text-2xl font-bold text-primary'>Logo</h1>
         </div>
 
         <nav className='flex text-primary'>
           {navLinks.map((link, key) => (
             <p
               key={key}
-              className='text-2xl pl-16 font-semibold cursor-pointer hover:font-extrabold'
+              className='text-xl pl-10 font-semibold cursor-pointer hover:font-extrabold'
             >
               {link.name}
             </p>

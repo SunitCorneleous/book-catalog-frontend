@@ -6,7 +6,7 @@ const SearchBox = (props: IProps) => {
   return (
     <input
       type='text'
-      className='my-4 py-4 block w-full rounded-xl border-borderColor text-xl'
+      className='my-2 py-2 block w-full rounded-lg border-borderColor text-lg'
       placeholder={props.title}
     />
   );
