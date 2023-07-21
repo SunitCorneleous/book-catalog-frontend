@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { api } from './api/apiSlice';
-import booksFilterSlice from './features/booksFilter/booksFilterSlice';
+import bookSearchSlice from './features/bookSearch/bookSearchSlice';
+import bookFilterSlice from './features/bookFilter/bookFilterSlice';
 
 const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
-    booksFilter: booksFilterSlice,
+    bookSearch: bookSearchSlice,
+    bookFilter: bookFilterSlice,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(api.middleware),

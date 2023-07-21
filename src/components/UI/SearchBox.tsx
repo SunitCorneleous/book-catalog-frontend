@@ -6,7 +6,7 @@ interface IProps {
 
 const SearchBox = (props: IProps) => {
   return (
-    <div className='mt-2'>
+    <div className='mt-4'>
       <label className='text-primary'>{props.label}</label>
       <input
         onChange={props.onChangeHandler}

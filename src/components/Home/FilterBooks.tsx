@@ -1,3 +1,4 @@
+import DropDownFilter from '../UI/DropDownFilter';
 import SearchBox from '../UI/SearchBox';
 
 type IFn = (event: { target: { value: string } }) => void;
@@ -16,6 +17,8 @@ const FilterBooks = ({ filterHandler }: IProps) => {
         onChangeHandler={filterHandler}
         title={'search by book details...'}
       />
+
+      <DropDownFilter />
     </div>
   );
 };

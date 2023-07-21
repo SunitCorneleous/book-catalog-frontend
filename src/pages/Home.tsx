@@ -2,19 +2,22 @@ import AllBooks from '../components/Home/AllBooks';
 import FilterBooks from '../components/Home/FilterBooks';
 import Spinner from '../components/UI/Spinner';
 import { useGetBooksQuery } from '../redux/api/apiSlice';
-import { setFilterBook } from '../redux/features/booksFilter/booksFilterSlice';
+import { setBookSearch } from '../redux/features/bookSearch/bookSearchSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { IBook } from '../types/globalTypes';
 
 const Home = () => {
   const { data, isLoading } = useGetBooksQuery(undefined);
-  const { keyword } = useAppSelector(state => state.booksFilter);
+  const { keyword } = useAppSelector(state => state.bookSearch);
+  const { genre, year } = useAppSelector(state => state.bookFilter);
+
+  console.log(year);
 
   const dispatch = useAppDispatch();
 
   const handleFilterChange = (event: { target: { value: string } }) => {
     const { value } = event.target;
-    dispatch(setFilterBook(value));
+    dispatch(setBookSearch(value));
   };
 
   let bookData = data?.data;
@@ -27,6 +30,14 @@ const Home = () => {
 
       return title || author || genre;
     });
+  } else if (genre && bookData) {
+    bookData = data?.data.filter((book: IBook) =>
+      book.genre.toLowerCase().includes(genre.toLowerCase())
+    );
+  } else if (year && bookData) {
+    bookData = data?.data.filter((book: IBook) =>
+      book.publicationDate.toLowerCase().includes(year.toLowerCase())
+    );
   }
 
   return (
