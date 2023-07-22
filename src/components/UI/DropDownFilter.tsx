@@ -4,6 +4,7 @@ import {
   setBookGenre,
   setBookYear,
 } from '../../redux/features/bookFilter/bookFilterSlice';
+import ActionButton from './ActionButton';
 
 const DropDownFilter = () => {
   const [filterType, setFilterType] = useState<string>('genre');
@@ -83,6 +84,15 @@ const DropDownFilter = () => {
 
         {filterType === 'year' ? filterYear : selectGenre}
       </div>
+
+      <ActionButton
+        onClickHandler={() => {
+          dispatch(setBookGenre(''));
+          dispatch(setBookYear(''));
+        }}
+      >
+        Reset
+      </ActionButton>
     </div>
   );
 };
