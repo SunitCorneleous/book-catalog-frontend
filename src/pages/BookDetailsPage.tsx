@@ -3,10 +3,16 @@ import useApi from "../hooks/useApi";
 import { BASE_URL } from "../constants/common";
 import { useEffect } from "react";
 import ActionButton from "../components/UI/ActionButton";
+import { useState } from "react";
+import ConfirmModal from "../components/UI/ConfirmModal";
+import { createPortal } from "react-dom";
+
+const modalComponent = document.getElementById("portal");
 
 export default function BookDetailsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const { fetchData, data } = useApi(BASE_URL);
 
@@ -20,6 +26,10 @@ export default function BookDetailsPage() {
 
   const navigateToEditPageHandler = () => {
     navigate(`/edit-book`, { state: data?.data });
+  };
+
+  const modalHandler = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -50,7 +60,7 @@ export default function BookDetailsPage() {
               Edit
             </ActionButton>
 
-            <ActionButton>Delete</ActionButton>
+            <ActionButton onClickHandler={modalHandler}>Delete</ActionButton>
           </div>
         </div>
         <div className="md:w-[35%]">
@@ -63,6 +73,12 @@ export default function BookDetailsPage() {
       </div>
       {/* //! TODO: Reviews */}
       <div></div>
+
+      {isOpen &&
+        createPortal(
+          <ConfirmModal modalHandler={modalHandler} />,
+          document.getElementById("portal")
+        )}
     </div>
   );
 }
