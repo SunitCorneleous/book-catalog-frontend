@@ -103,24 +103,26 @@ export default function BookDetailsPage() {
       </div>
       {/* //! TODO: Reviews */}
       <div className='mt-8 flex justify-between px-12'>
-        <div>
-          <h1 className='text-center text-lg text-primary font-semibold'>
-            Leave a review to recommend other readers
-          </h1>
+        {isLoggedIn && (
+          <div>
+            <h1 className='text-center text-lg text-primary font-semibold'>
+              Leave a review to recommend other readers
+            </h1>
 
-          <form onSubmit={handleReview}>
-            <div className='flex flex-col mt-6'>
-              <label className='text-primary'>Enter review here:</label>
-              <input
-                name='review'
-                className='py-2 block w-full rounded-lg border-borderColor text-lg'
-              />
-            </div>
-            <Button type='submit' className='mt-4'>
-              Submit
-            </Button>
-          </form>
-        </div>
+            <form onSubmit={handleReview}>
+              <div className='flex flex-col mt-6'>
+                <label className='text-primary'>Enter review here:</label>
+                <input
+                  name='review'
+                  className='py-2 block w-full rounded-lg border-borderColor text-lg'
+                />
+              </div>
+              <Button type='submit' className='mt-4'>
+                Submit
+              </Button>
+            </form>
+          </div>
+        )}
         <div>
           {/* review */}
           {reviewData?.data.map((item, i) => (
