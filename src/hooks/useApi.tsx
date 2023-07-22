@@ -20,13 +20,16 @@ const useApi = (url: string) => {
     setIsLoading(false);
   };
 
-  const postData = async (body, endPoint) => {
+  const postData = async (body, endPoint, options?: object) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await axios.post(url + endPoint, body);
+      const response = await axios.post(url + endPoint, body, options);
+
       setData(response.data);
+
+      return response.data;
     } catch (error) {
       setError(error);
     }

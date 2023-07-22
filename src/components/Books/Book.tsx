@@ -5,7 +5,7 @@ const Book = ({ data }) => {
   return (
     <Link to={`/book-details/${data._id}`}>
       <motion.div
-        className='w-72 cursor-pointer shadow-md shadow-borderColor rounded-md'
+        className='w-72 mx-auto cursor-pointer shadow-md shadow-borderColor rounded-md'
         whileHover={{ scale: 1.03 }}
       >
         <div>
