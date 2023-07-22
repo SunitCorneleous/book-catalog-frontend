@@ -1,15 +1,16 @@
-import { createBrowserRouter } from 'react-router-dom';
-import App from '../App';
-import Home from '../pages/Home';
-import AllBooksPage from '../pages/AllBooksPage';
-import LoginPage from '../pages/LoginPage';
-import AddNewBookPage from '../pages/AddNewBookPage';
-import BookDetailsPage from '../pages/BookDetailsPage';
-import SignUpPage from '../pages/SignUpPage';
+import { createBrowserRouter } from "react-router-dom";
+import App from "../App";
+import Home from "../pages/Home";
+import AllBooksPage from "../pages/AllBooksPage";
+import LoginPage from "../pages/LoginPage";
+import AddNewBookPage from "../pages/AddNewBookPage";
+import BookDetailsPage from "../pages/BookDetailsPage";
+import SignUpPage from "../pages/SignUpPage";
+import EditBookPage from "../pages/EditBookPage";
 
 const routes = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       {
@@ -17,24 +18,28 @@ const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'all-books',
+        path: "all-books",
         element: <AllBooksPage />,
       },
       {
-        path: 'login',
+        path: "login",
         element: <LoginPage />,
       },
       {
-        path: 'sign-up',
+        path: "sign-up",
         element: <SignUpPage />,
       },
       {
-        path: 'add-new-book',
+        path: "add-new-book",
         element: <AddNewBookPage />,
       },
       {
-        path: '/book-details/:id',
+        path: "/book-details/:id",
         element: <BookDetailsPage />,
+      },
+      {
+        path: "/edit-book",
+        element: <EditBookPage />,
       },
     ],
   },

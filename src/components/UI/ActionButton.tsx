@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 type IPropType = {
   children: ReactNode;
   className?: string;
-  onClickHandler: () => void;
+  onClickHandler?: () => void;
 };
 
 function ActionButton({ children, className, onClickHandler }: IPropType) {
