@@ -3,6 +3,7 @@ import App from '../App';
 import Home from '../pages/Home';
 import AllBooksPage from '../pages/AllBooksPage';
 import LoginPage from '../pages/LoginPage';
+import AddNewBookPage from '../pages/AddNewBookPage';
 
 const routes = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const routes = createBrowserRouter([
       {
         path: 'login',
         element: <LoginPage />,
+      },
+      {
+        path: 'add-new-book',
+        element: <AddNewBookPage />,
       },
     ],
   },

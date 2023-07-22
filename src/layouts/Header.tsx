@@ -13,7 +13,9 @@ const Header = () => {
     const accessToken = localStorage.getItem('access_token');
 
     if (accessToken) {
-      store.dispatch(loginWithToken(accessToken)).catch(error => {});
+      store.dispatch(loginWithToken(accessToken)).catch(error => {
+        console.log(error);
+      });
     }
   }, []);
 
@@ -43,9 +45,27 @@ const Header = () => {
 
         <nav className='flex text-primary'>
           {isLoggedIn ? (
-            <ActionButton onClickHandler={() => dispatch(logout())}>
-              Logout
-            </ActionButton>
+            <div className='flex items-center'>
+              <Link
+                className='text-xl pl-10 font-semibold cursor-pointer hover:font-extrabold mr-6'
+                to='all-books'
+              >
+                All Books
+              </Link>
+              <Link
+                className='text-xl pl-4 font-semibold cursor-pointer hover:font-extrabold mr-6'
+                to='add-new-book'
+              >
+                Add New
+              </Link>
+
+              <ActionButton
+                className='p-10'
+                onClickHandler={() => dispatch(logout())}
+              >
+                Logout
+              </ActionButton>
+            </div>
           ) : (
             navLinks.map((link, key) => (
               <Link

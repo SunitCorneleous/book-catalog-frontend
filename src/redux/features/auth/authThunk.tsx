@@ -47,7 +47,7 @@ export const loginWithToken = createAsyncThunk(
 
       return await data.json();
     } catch (error) {
-      console.error('Error logging in with token:', error.message);
+      console.error('Error logging in with token:', error?.message);
       throw error;
     }
   }
