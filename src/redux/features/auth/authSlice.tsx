@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createSlice } from '@reduxjs/toolkit';
-import { loginAsync, loginWithToken } from './authThunk';
+import { loginAsync, loginWithToken, logout } from './authThunk';
 
 interface IAuthState {
   isLoggedIn: boolean;
@@ -65,11 +65,17 @@ const authSlice = createSlice({
       })
       .addCase(loginWithToken.rejected, (state, action) => {
         state.isLoading = false;
-
         state.user = null;
         state.isError = true;
         state.isLoggedIn = false;
         state.error = action.error.message!;
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.isLoggedIn = false;
+        state.isLoading = false;
+        state.isError = false;
+        state.isLoggedIn = false;
+        state.user = null;
       });
   },
 });

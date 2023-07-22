@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { loginWithToken } from '../redux/features/auth/authThunk';
+import { loginWithToken, logout } from '../redux/features/auth/authThunk';
 import store from '../redux/store';
-import { useAppSelector } from '../redux/hooks';
-import Button from '../components/UI/Button';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import ActionButton from '../components/UI/ActionButton';
 
 const Header = () => {
   const { isLoggedIn } = useAppSelector(state => state.auth);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const accessToken = localStorage.getItem('access_token');
@@ -43,7 +43,7 @@ const Header = () => {
 
         <nav className='flex text-primary'>
           {isLoggedIn ? (
-            <ActionButton onClickHandler={() => console.log('logout')}>
+            <ActionButton onClickHandler={() => dispatch(logout())}>
               Logout
             </ActionButton>
           ) : (

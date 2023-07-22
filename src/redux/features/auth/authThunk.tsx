@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { setAccessToken, setLoggedIn, setUser } from './authSlice';
 
 const LOGIN_API_URL = 'http://localhost:5000/api/v1/user/login';
 const LOGIN_WITH_TOKEN_API_URL =
@@ -53,3 +52,12 @@ export const loginWithToken = createAsyncThunk(
     }
   }
 );
+
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    localStorage.removeItem('access_token');
+  } catch (error) {
+    console.error('Error logging out:', error.message);
+    throw error;
+  }
+});
