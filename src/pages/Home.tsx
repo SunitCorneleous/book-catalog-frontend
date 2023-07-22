@@ -23,7 +23,7 @@ const Home = () => {
   }
 
   return (
-    <div className='px-12 '>
+    <div className='px-12'>
       <h2 className='text-2xl text-primary font-semibold mb-6'>
         Top 10 recently added books{' '}
       </h2>
