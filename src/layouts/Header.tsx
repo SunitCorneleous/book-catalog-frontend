@@ -38,8 +38,8 @@ const Header = () => {
     <div>
       <div className='flex h-40 md:max-w-full px-12 md:mx-auto items-center justify-between '>
         <div className=''>
-          <h1 className='text-2xl font-bold text-primary'>
-            <Link to={'/'}>Logo</Link>
+          <h1 className='text-3xl font-extrabold text-primary underline bg-white p-2 shadow-sm rounded-md border-2 border-primary'>
+            <Link to={'/'}>Catalog Plus</Link>
           </h1>
         </div>
 

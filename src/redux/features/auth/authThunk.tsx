@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const LOGIN_API_URL = 'http://localhost:5000/api/v1/user/login';
+const LOGIN_API_URL =
+  'https://book-catalog-backend-psi.vercel.app/api/v1/user/login';
 const LOGIN_WITH_TOKEN_API_URL =
-  'http://localhost:5000/api/v1/user/login-with-token';
+  'https://book-catalog-backend-psi.vercel.app/api/v1/user/login-with-token';
 
 export const loginAsync = createAsyncThunk(
   'auth/loginAsync',
