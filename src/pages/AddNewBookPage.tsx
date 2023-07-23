@@ -9,17 +9,25 @@ export default function AddNewBookPage() {
   const { isLoggedIn } = useAppSelector(state => state.auth);
   const navigate = useNavigate();
 
-  const addBookHandler: React.FormEventHandler = async e => {
+  const addBookHandler: React.FormEventHandler<HTMLFormElement> = async e => {
     e.preventDefault();
 
-    const form = e.target;
+    const form = e.currentTarget;
 
-    const title = form.title.value;
+    const title = form.Title.value;
     const author = form.author.value;
     const genre = form.genre.value;
     const publication = form.publication.value;
     const image = form.image.value;
 
+    /*     console.log({
+      title,
+      author,
+      genre,
+      publication,
+      image,
+    });
+ */
     const result = await axios.post(
       `${BASE_URL}/books/add-book`,
       {
@@ -58,7 +66,7 @@ export default function AddNewBookPage() {
           <div className='flex flex-col mt-6'>
             <label className='text-primary'>Title:</label>
             <input
-              name='title'
+              name='Title'
               className='py-2 block w-full rounded-lg border-borderColor text-lg'
             />
           </div>

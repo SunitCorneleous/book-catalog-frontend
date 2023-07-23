@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createSlice } from '@reduxjs/toolkit';
 import { loginAsync, loginWithToken, logout } from './authThunk';
@@ -5,7 +6,9 @@ import { loginAsync, loginWithToken, logout } from './authThunk';
 interface IAuthState {
   isLoggedIn: boolean;
 
-  user: object | null;
+  user: {
+    _id: string;
+  } | null;
   isLoading: boolean;
   isError: boolean;
   error: null | string;
@@ -26,7 +29,7 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(loginAsync.pending, (state, action) => {
+      .addCase(loginAsync.pending, (state, _action) => {
         state.isLoading = true;
 
         state.user = null;
@@ -49,7 +52,7 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.error = action.error.message!;
       })
-      .addCase(loginWithToken.pending, (state, action) => {
+      .addCase(loginWithToken.pending, (state, _action) => {
         state.isLoading = true;
         state.user = null;
         state.isError = false;
@@ -70,7 +73,7 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.error = action.error.message!;
       })
-      .addCase(logout.fulfilled, (state, action) => {
+      .addCase(logout.fulfilled, (state, _action) => {
         state.isLoggedIn = false;
         state.isLoading = false;
         state.isError = false;

@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Footer from './Footer';
 import Header from './Header';
-import { Toaster } from 'react-hot-toast';
 import PageContainer from '../components/shared/PageContainer';
 
 const MainLayout = () => {

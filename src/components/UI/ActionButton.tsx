@@ -1,9 +1,10 @@
-import { ReactNode } from "react";
+/* eslint-disable @typescript-eslint/ban-types */
+import { ReactNode } from 'react';
 
 type IPropType = {
   children: ReactNode;
   className?: string;
-  onClickHandler?: () => void;
+  onClickHandler?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 function ActionButton({ children, className, onClickHandler }: IPropType) {

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -15,17 +17,12 @@ export const loginAsync = createAsyncThunk(
       const data = await response.data;
 
       if (response.status !== 200) {
-        return thunkAPI.rejectWithValue(data); // Pass data to the rejectWithValue method
+        return thunkAPI.rejectWithValue(data);
       }
 
       return data;
-    } catch (error) {
-      // Handle login errors here
-      // You can customize the error message based on your API response
-      const errorMessage = error.response
-        ? error.response.data.message
-        : 'An error occurred during login.';
-      return thunkAPI.rejectWithValue(error.message);
+    } catch (error: unknown) {
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -47,18 +44,18 @@ export const loginWithToken = createAsyncThunk(
       }
 
       return await data.json();
-    } catch (error) {
-      console.error('Error logging in with token:', error?.message);
+    } catch (error: unknown) {
+      console.error('Error logging in with token:', error);
       throw error;
     }
   }
 );
 
-export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logout = createAsyncThunk('auth/logout', async (_, _thunkAPI) => {
   try {
     localStorage.removeItem('access_token');
-  } catch (error) {
-    console.error('Error logging out:', error.message);
+  } catch (error: unknown) {
+    console.error('Error logging out:', error);
     throw error;
   }
 });

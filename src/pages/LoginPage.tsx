@@ -8,9 +8,9 @@ const LoginPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const loginHandler: React.FormEventHandler = e => {
+  const loginHandler: React.FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
-    const form = e.target;
+    const form = e.currentTarget;
 
     const email = form.email.value;
     const password = form.password.value;

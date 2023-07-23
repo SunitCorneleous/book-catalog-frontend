@@ -1,4 +1,6 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useNavigate, useParams } from 'react-router-dom';
 import useApi from '../hooks/useApi';
 import { BASE_URL } from '../constants/common';
 import { useEffect } from 'react';
@@ -20,12 +22,14 @@ export default function BookDetailsPage() {
 
   const { fetchData, data } = useApi(BASE_URL);
   const { fetchData: getReviews, data: reviewData } = useApi(BASE_URL);
-  const { postData: postReview, data: reviewPostData } = useApi(BASE_URL);
+  const { postData: postReview } = useApi(BASE_URL);
+
+  console.log(reviewData);
 
   const getData = async () => {
-    await fetchData(`books/${id}`);
+    await fetchData(`/books/${id}`);
 
-    await getReviews(`reviews/${id}`);
+    await getReviews(`/reviews/${id}`);
   };
 
   useEffect(() => {
@@ -49,7 +53,7 @@ export default function BookDetailsPage() {
 
     const userReviewData = {
       review,
-      userId: user._id,
+      userId: user?._id,
       bookId: id,
     };
 
@@ -64,7 +68,7 @@ export default function BookDetailsPage() {
 
   const addToWishList = async () => {
     const response = await axios.patch(
-      `${BASE_URL}/wish-list/${user._id}`,
+      `${BASE_URL}/wish-list/${user?._id}`,
       { bookId: id },
       {
         headers: {
@@ -152,7 +156,7 @@ export default function BookDetailsPage() {
         )}
         <div>
           {/* review */}
-          {reviewData?.data.map((item, i) => (
+          {reviewData?.data?.map((item, i) => (
             <div className='mb-4' key={i}>
               <p className='text-primary text-xl font-semibold'>
                 {item?.review}
@@ -167,8 +171,8 @@ export default function BookDetailsPage() {
 
       {isOpen &&
         createPortal(
-          <ConfirmModal modalHandler={modalHandler} />,
-          document.getElementById('portal')
+          <ConfirmModal modalHandler={modalHandler} bookId={id} />,
+          document.getElementById('portal') as HTMLElement
         )}
     </div>
   );

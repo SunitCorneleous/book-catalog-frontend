@@ -1,7 +1,18 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const Book = ({ data }) => {
+interface IProp {
+  data: {
+    _id: string;
+    image: string;
+    title: string;
+    author: string;
+    genre: string;
+    publicationDate: string;
+  };
+}
+
+const Book = ({ data }: IProp) => {
   return (
     <Link to={`/book-details/${data._id}`}>
       <motion.div
