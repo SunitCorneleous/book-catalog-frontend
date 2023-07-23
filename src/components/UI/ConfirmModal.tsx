@@ -13,7 +13,7 @@ interface IProp {
 function ConfirmModal({ modalHandler, bookId }: IProp) {
   const navigate = useNavigate();
 
-  const deleteBookHandler = async bookId => {
+  const deleteBookHandler = async (bookId: string | undefined) => {
     const result = await axios.delete(`${BASE_URL}/books/${bookId}`);
 
     console.log(result);

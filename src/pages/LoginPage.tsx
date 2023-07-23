@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/UI/Button';
 import { loginAsync } from '../redux/features/auth/authThunk';
@@ -15,6 +16,7 @@ const LoginPage = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    /* @ts-ignore */
     dispatch(loginAsync({ email, password }));
   };
 

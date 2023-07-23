@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { loginWithToken, logout } from '../redux/features/auth/authThunk';
@@ -13,6 +14,7 @@ const Header = () => {
     const accessToken = localStorage.getItem('access_token');
 
     if (accessToken) {
+      /* @ts-ignore */
       store.dispatch(loginWithToken(accessToken)).catch(error => {
         console.log(error);
       });
