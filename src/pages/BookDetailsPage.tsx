@@ -9,6 +9,8 @@ import { createPortal } from 'react-dom';
 import { useAppSelector } from '../redux/hooks';
 import Button from '../components/UI/Button';
 import { toast } from 'react-toastify';
+import { FaListUl } from 'react-icons/fa';
+import axios from 'axios';
 
 export default function BookDetailsPage() {
   const { isLoggedIn, user } = useAppSelector(state => state.auth);
@@ -60,6 +62,20 @@ export default function BookDetailsPage() {
     toast.success(result?.message);
   };
 
+  const addToWishList = async () => {
+    const response = await axios.patch(
+      `${BASE_URL}/wish-list/${user._id}`,
+      { bookId: id },
+      {
+        headers: {
+          Authorization: localStorage.getItem('access_token'),
+        },
+      }
+    );
+
+    toast.success(response.data.message);
+  };
+
   return (
     <div className='px-12'>
       <h2 className='text-2xl text-primary font-semibold mb-6'>
@@ -79,6 +95,17 @@ export default function BookDetailsPage() {
           <p className='text-primary font-semibold text-xl mt-4'>
             Publication Date: {data?.data.publicationDate}
           </p>
+
+          {isLoggedIn && (
+            <div className='mt-8'>
+              <FaListUl
+                onClick={addToWishList}
+                size={25}
+                className='text-primary cursor-pointer'
+                title='add to wish list'
+              />
+            </div>
+          )}
 
           {isLoggedIn && (
             <div className='mt-8'>
